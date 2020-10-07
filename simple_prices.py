@@ -16,7 +16,8 @@ def price_change(pair):
         if num != p:
             r = num-p
             change = f"{r:.9f}"
-            print(f"Price: {num} | Change: {change}")
+            t = time.time()
+            print(f"Price: {num} | Change: {change} | Time (s): {t}")
             p = num
     return ""
 
