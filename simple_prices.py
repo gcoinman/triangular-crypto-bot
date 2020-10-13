@@ -21,4 +21,4 @@ def price_change(pair):
             p = num
     return ""
 
-price_change("LTCBTC")
+price_change("ETHBTC")
