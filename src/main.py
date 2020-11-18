@@ -135,7 +135,7 @@ others = [
 def stripf(word, term):
     return word.replace(term, "")
 
-#Returns if whether each pair needs to be bought or sold in triangular arbitrage transaction
+#Returns whether each pair needs to be bought or sold in triangular arbitrage transaction
 def sides(pairs):
     strip = lambda x: x.replace("USDT", "")
     if pairs[0][-4:] == 'USDT':
