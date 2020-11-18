@@ -10,6 +10,7 @@ headers = {
 }
 FEE = 0.001
 
+#Orders a pair
 def order(pair, side, quantity):
     PATH = '/api/v3/order'
     timestamp = int(time.time() * 1000)
@@ -27,6 +28,7 @@ def order(pair, side, quantity):
     r = requests.post(url, headers=headers, params=params)
     print(r.json())
 
+#Returns my account's information (balances, permissions, etc.)
 def snapshot():
     PATH = '/api/v3/account'
     timestamp = int((time.time() *1000))
@@ -43,12 +45,14 @@ def round_down(n, decimals=0):
     multiplier = 10 ** decimals
     return math.floor(n * multiplier) / multiplier
 
+#Returns all pairs on Binance
 def get_pairs():
     PATH = '/api/v3/exchangeInfo'
     url = urljoin(BASE_URL, PATH)
     r = requests.get(url, headers=headers)
     return r.json()
 
+#All pairs on Binance exchange
 PAIRS = ['ETHBTC', 'LTCBTC', 'BNBBTC', 'NEOBTC', 'QTUMETH', 'EOSETH', 'SNTETH', 'BNTETH', 'BCCBTC', 'GASBTC', 'BNBETH', 'BTCUSDT', 'ETHUSDT', 'HSRBTC', 'OAXETH', 'DNTETH', 'MCOETH', 'ICNETH', 'MCOBTC', 'WTCBTC', 'WTCETH', 'LRCBTC', 'LRCETH', 'QTUMBTC', 'YOYOBTC', 'OMGBTC', 'OMGETH', 'ZRXBTC', 'ZRXETH', 'STRATBTC', 'STRATETH', 'SNGLSBTC', 'SNGLSETH', 'BQXBTC', 'BQXETH', 'KNCBTC', 'KNCETH', 'FUNBTC', 'FUNETH', 'SNMBTC', 'SNMETH', 'NEOETH', 'IOTABTC', 'IOTAETH', 'LINKBTC', 'LINKETH', 'XVGBTC', 'XVGETH', 
 'SALTBTC', 'SALTETH', 'MDABTC', 'MDAETH', 'MTLBTC', 'MTLETH', 'SUBBTC', 'SUBETH', 'EOSBTC', 'SNTBTC', 'ETCETH', 'ETCBTC', 'MTHBTC', 'MTHETH', 'ENGBTC', 'ENGETH', 'DNTBTC', 'ZECBTC', 'ZECETH', 'BNTBTC', 'ASTBTC', 'ASTETH', 'DASHBTC', 'DASHETH', 'OAXBTC', 'ICNBTC', 'BTGBTC', 'BTGETH', 'EVXBTC', 'EVXETH', 'REQBTC', 'REQETH', 'VIBBTC', 'VIBETH', 'HSRETH', 'TRXBTC', 'TRXETH', 'POWRBTC', 'POWRETH', 'ARKBTC', 'ARKETH', 'YOYOETH', 'XRPBTC', 'XRPETH', 'MODBTC', 'MODETH', 'ENJBTC', 'ENJETH', 'STORJBTC', 
 'STORJETH', 'BNBUSDT', 'VENBNB', 'YOYOBNB', 'POWRBNB', 'VENBTC', 'VENETH', 'KMDBTC', 'KMDETH', 'NULSBNB', 'RCNBTC', 'RCNETH', 'RCNBNB', 'NULSBTC', 'NULSETH', 'RDNBTC', 'RDNETH', 'RDNBNB', 'XMRBTC', 'XMRETH', 'DLTBNB', 'WTCBNB', 'DLTBTC', 'DLTETH', 'AMBBTC', 'AMBETH', 'AMBBNB', 'BCCETH', 'BCCUSDT', 'BCCBNB', 'BATBTC', 'BATETH', 'BATBNB', 'BCPTBTC', 'BCPTETH', 'BCPTBNB', 'ARNBTC', 'ARNETH', 'GVTBTC', 'GVTETH', 'CDTBTC', 'CDTETH', 'GXSBTC', 'GXSETH', 'NEOUSDT', 'NEOBNB', 'POEBTC', 'POEETH', 'QSPBTC', 
@@ -75,6 +79,7 @@ PAIRS = ['ETHBTC', 'LTCBTC', 'BNBBTC', 'NEOBTC', 'QTUMETH', 'EOSETH', 'SNTETH', 
 'FLMBTC', 'FLMBUSD', 'FLMUSDT', 'SCRTBTC', 'SCRTETH', 'CAKEBNB', 'CAKEBUSD', 'SPARTABNB', 'UNIUPUSDT', 'UNIDOWNUSDT', 'ORNBTC', 'ORNUSDT', 'TRXNGN', 'SXPTRY', 'UTKBTC', 'UTKUSDT', 'XVSBNB', 'XVSBTC', 'XVSBUSD', 'XVSUSDT', 'ALPHABNB', 'ALPHABTC', 'ALPHABUSD', 'ALPHAUSDT', 'VIDTBTC', 'VIDTBUSD', 'AAVEBNB', 'BTCBRL', 'USDTBRL', 'AAVEBTC', 'AAVEETH', 'AAVEBUSD', 'AAVEUSDT', 'AAVEBKRW', 'NEARBNB', 'NEARBTC', 'NEARBUSD', 'NEARUSDT', 'SXPUPUSDT', 'SXPDOWNUSDT', 'DOTBKRW', 'SXPGBP', 'FILBNB', 'FILBTC', 'FILBUSD', 
 'FILUSDT', 'FILUPUSDT', 'FILDOWNUSDT', 'YFIUPUSDT', 'YFIDOWNUSDT', 'INJBNB', 'INJBTC', 'INJBUSD', 'INJUSDT', 'AERGOBTC', 'AERGOBUSD', 'LINKEUR', 'ONEBUSD', 'EASYETH', 'AUDIOBTC', 'AUDIOBUSD', 'AUDIOUSDT', 'CTKBNB', 'CTKBTC', 'CTKBUSD', 'CTKUSDT', 'BCHUPUSDT', 'BCHDOWNUSDT', 'BOTBTC', 'BOTBUSD', 'ETHBRL', 'DOTEUR', 'AKROBTC', 'AKROUSDT', 'KP3RBNB', 'KP3RBUSD', 'AXSBNB', 'AXSBTC', 'AXSBUSD', 'AXSUSDT', 'HARDBNB', 'HARDBTC', 'HARDBUSD', 'HARDUSDT', 'BNBBRL', 'LTCEUR', 'RENBTCBTC', 'RENBTCETH', 'DNTBUSD', 'DNTUSDT', 'SLPETH', 'ADAEUR', 'LTCNGN']
 
+#Groups of three pairs used in each triangular arbitrage
 triangles = [
     ['NEOUSDT', 'NEOUSDC', 'USDCUSDT'], 
     ['LTCUSDT', 'LTCBUSD', 'BUSDUSDT'], 
@@ -82,6 +87,7 @@ triangles = [
     ['NEOUSDT', 'NEOBNB', 'BNBUSDT']
 ]
 
+#Other currencies that will be formatted into triangles | Not being used in the program currently
 others = [ 
     ['ADABTC', 'ADAETH', 'ADABNB', 'ADAEUR', 'ADAUSDT', 'ADAPAX', 'ADABUSD', 'ADAUSDC', 'ADAUPUSDT', 'ADABKRW', 'ADATUSD'], 
     ['XZCXRP', 'XRPTRY', 'TRXXRP', 'XRPBKRW', 'XRPBUSD', 'XRPBTC', 'XRPUSDT', 'XRPBNB', 'XRPUSDC', 'XRPGBP', 'XRPPAX', 'XRPAUD', 'XRPETH', 'XRPRUB', 'XRPEUR'], 
@@ -129,6 +135,7 @@ others = [
 def stripf(word, term):
     return word.replace(term, "")
 
+#Returns if whether each pair needs to be bought or sold in triangular arbitrage transaction
 def sides(pairs):
     strip = lambda x: x.replace("USDT", "")
     if pairs[0][-4:] == 'USDT':
@@ -145,6 +152,7 @@ def sides(pairs):
         third = "BUY"
     return first, second, third
 
+#The number of decimals a pair allows for its price when making an order
 def get_precision(pairs):
     precisions = []
     info = requests.get("https://www.binance.com/api/v1/exchangeInfo").json()
@@ -155,6 +163,7 @@ def get_precision(pairs):
         precisions.append(precision)
     return precisions
 
+#Prices of each of the three pairs in the triangular arbitrage transaction
 def triangle(pairs):
     strip = lambda x: x.replace("USDT", "")
     if pairs[0][-4:] == 'USDT':
@@ -171,6 +180,8 @@ def triangle(pairs):
         third = 1/float(requests.get(f"https://api.binance.com/api/v3/ticker/price?symbol={pairs[2]}").json()['price'])
     return first, second, third
 
+#Loop printing if the three pairs are above a certain margin
+#Will add order functions to enact transaction if it is above the margin
 def enact(input, pairs, margin=0):
     precisions = get_precision(pairs)
     s = sides(pairs)
